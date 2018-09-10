@@ -10,6 +10,7 @@ class ElementSearch {
 
     JumpSearch js = new JumpSearch(arr);
     System.out.println(js.searchData(9));
+
   }
 }
 
@@ -115,3 +116,4 @@ class JumpSearch extends setSearch implements Search {
     return answer;
   }
 }
+
