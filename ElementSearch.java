@@ -7,6 +7,10 @@ class ElementSearch {
 
     BinarySearch bs = new BinarySearch(arr);
     System.out.println(bs.searchData(3));
+
+    JumpSearch js = new JumpSearch(arr);
+    System.out.println(js.searchData(9));
+
   }
 }
 
@@ -75,3 +79,41 @@ class ElementSearch {
     }
 
   }
+
+
+class JumpSearch extends setSearch implements Search {
+  int searching;
+  int jump;
+  public JumpSearch (int [] data) {
+    super (data);
+    jump = (int) Math.sqrt(length);
+  }
+
+  public int searchData (int value) {
+    searching = value;
+    int diff = Integer.MAX_VALUE;
+    int index = 0;
+    for (int i = 0 ; i < length ; i = i+jump) {
+      int differ = searching - baseData[i];
+      if (differ < 0) {
+        index = i-jump;
+        break;
+      }
+      else if(differ == 0)
+        answer = i+1;
+    }
+    boolean found = false;
+    for (int j = index ; j< (index+jump) ; j++) {
+      int differ = searching - baseData[j];
+      if (differ == 0) {
+        answer = j+1;
+        found = true;
+        break;
+      }
+    }
+    if (found == false)
+      return -1;
+    return answer;
+  }
+}
+
